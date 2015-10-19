@@ -1,2 +1,3 @@
-# dev.foundation.whc
-This is a development version of foundation.whc
+# foundation.webhosting.coop
+
+[Describe the project.]
