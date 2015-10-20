@@ -9,8 +9,6 @@ WORKDIR /srv/www
 ADD www/. /srv/www/
 ADD www/.* /srv/www/
 RUN sudo chown -R yeoman. /srv/www 
-RUN ls -lha
-RUN sleep 10
 
 RUN ["/bin/bash", "-c",  "source /home/yeoman/.rvm/scripts/rvm ; bundle install"]
 RUN ["/bin/bash", "-c",  "npm owner ls bufferutil"]
