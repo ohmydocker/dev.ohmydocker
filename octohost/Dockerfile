@@ -7,7 +7,7 @@ ENV LC_ALL en_US.UTF-8
 
 WORKDIR /srv/www
 
-ADD app/* /srv/www/
+ADD www/app/* /srv/www/
 RUN jekyll build
 
 EXPOSE 80

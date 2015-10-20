@@ -9,9 +9,11 @@ help:
 
 build: cprenderin builddocker cpoctoin beep
 
-render: cprenderin builddocker rundocker cpoctoin rm beep
+render: cprenderin builddocker rundocker cprundevin rm beep
 
-octo: cpoctoin octopush
+dev: cprundevin builddocker rundevdocker
+
+octo: cpoctoin octopush cprundevin
 
 show:
 	chromium /tmp/_site/index.html
@@ -20,6 +22,17 @@ serve:
 	grunt serve
 	chromium  http://127.0.0.1:3000
 	chromium  http://127.0.0.1:3001
+
+rundevdocker:
+	docker run --name=whcfoundation \
+	--cidfile="cid" \
+	-v /tmp:/tmp \
+	-p 3000:3000 \
+	-p 3001:3001 \
+	-v /var/run/docker.sock:/run/docker.sock \
+	-v $(shell which docker):/bin/docker \
+	-t joshuacox/whcfoundationrender
+
 
 jserve:
 	cd app/ jekyll serve -B
@@ -30,6 +43,9 @@ octopush:
 
 cprenderin:
 	cp render/Dockerfile ./Dockerfile
+
+cprundevin:
+	cp rundev/Dockerfile ./Dockerfile
 
 cpoctoin:
 	cp octohost/Dockerfile ./Dockerfile
@@ -50,20 +66,20 @@ beep:
 	@aplay /usr/share/sounds/alsa/Front_Center.wav
 
 kill:
-	@docker kill `cat cid`
+	-@docker kill `cat cid`
 
 rm-name:
-	rm  name
+	-rm  name
 
 rm-image:
-	@docker rm `cat cid`
-	@rm cid
+	-@docker rm `cat cid`
+	-@rm cid
 
 cleanfiles:
-	rm name
-	rm repo
-	rm proxy
-	rm proxyport
+	-rm name
+	-rm repo
+	-rm proxy
+	-rm proxyport
 
 rm: kill rm-image
 

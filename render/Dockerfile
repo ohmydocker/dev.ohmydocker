@@ -8,7 +8,7 @@ ENV LC_ALL en_US.UTF-8
 WORKDIR /srv/www
 RUN gem install kramdown
 
-ADD app/* /srv/www/
+ADD www/app/* /srv/www/
 RUN jekyll build
 
 ADD ./start.sh /start.sh
