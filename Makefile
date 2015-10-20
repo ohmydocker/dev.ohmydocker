@@ -24,15 +24,16 @@ serve:
 	chromium  http://127.0.0.1:3001
 
 rundevdocker:
+	$(eval TMP := $(shell mktemp -d --suffix=WHCFOUNDATION))
+	chmod 777 $(TMP)
 	docker run --name=whcfoundation \
 	--cidfile="cid" \
-	-v /tmp:/tmp \
+	-v $(TMP):/tmp \
 	-p 3000:3000 \
 	-p 3001:3001 \
 	-v /var/run/docker.sock:/run/docker.sock \
 	-v $(shell which docker):/bin/docker \
 	-t joshuacox/whcfoundationrender
-
 
 jserve:
 	cd app/ jekyll serve -B

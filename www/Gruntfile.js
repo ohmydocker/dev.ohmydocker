@@ -56,9 +56,9 @@ module.exports = function (grunt) {
         options: {
           server: {
             baseDir: [
-              ".jekyll",
-              ".tmp",
-              "<%= yeoman.app %>"
+              '.jekyll',
+              '.tmp',
+              '<%= yeoman.app %>'
             ]
           },
           watchTask: true
@@ -67,7 +67,7 @@ module.exports = function (grunt) {
       dist: {
         options: {
           server: {
-            baseDir: "<%= yeoman.dist %>"
+            baseDir: '<%= yeoman.dist %>'
           }
         }
       },
@@ -84,9 +84,9 @@ module.exports = function (grunt) {
         options: {
           server: {
             baseDir: [
-              ".jekyll",
-              ".tmp",
-              "<%= yeoman.app %>"
+              '.jekyll',
+              '.tmp',
+              '<%= yeoman.app %>'
             ]
           },
           watchTask: true
@@ -373,9 +373,9 @@ module.exports = function (grunt) {
     'compass:server',
     'coffeelint:check',
     'coffee:dist',
-    'jshint:all',
     'csslint:check'
     // 'scsslint'
+    //'jshint:all',
   ]);
 
   grunt.registerTask('build', [
@@ -384,9 +384,9 @@ module.exports = function (grunt) {
     'jekyll:dist',
     'concurrent:dist',
     'useminPrepare',
-    'concat',
+    //'concat',
     'cssmin',
-    'uglify',
+    //'uglify',
     'imagemin',
     'svgmin',
     'filerev',
