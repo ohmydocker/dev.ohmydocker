@@ -1,7 +1,7 @@
 #!/bin/bash
 source /home/yeoman/.rvm/scripts/rvm
 
-grunt
+grunt serve
 sleep 1
 echo "debug hang"
 sleep 600

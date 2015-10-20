@@ -15,11 +15,10 @@ RUN sleep 10
 RUN ["/bin/bash", "-c",  "source /home/yeoman/.rvm/scripts/rvm ; bundle install"]
 RUN ["/bin/bash", "-c",  "npm owner ls bufferutil"]
 RUN ["/bin/bash", "-c",  "source /home/yeoman/.rvm/scripts/rvm ; npm install"]
-RUN ["/bin/bash", "-c",  "source /home/yeoman/.rvm/scripts/rvm ; npm install coffeelint"]
+# RUN ["/bin/bash", "-c",  "source /home/yeoman/.rvm/scripts/rvm ; npm install coffeelint"]
 RUN ["/bin/bash", "-c",  "source /home/yeoman/.rvm/scripts/rvm ; bower install"]
 
 EXPOSE 3000 3001
 
 ADD start.sh /srv/www/
-RUN sudo apt-get update ; sudo apt-get install -y libavahi-compat-libdnssd-dev
 CMD ["/bin/bash", "-c",  "source /home/yeoman/.rvm/scripts/rvm ; ./start.sh"]
