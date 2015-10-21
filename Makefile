@@ -33,8 +33,10 @@ preview:
 	chromium  http://127.0.0.1:3001
 	chromium  http://127.0.0.1:3000
 
-devola:
+pull:
 	docker pull joshuacox/whcfoundation
+
+devola:
 	$(eval TMP := $(shell mktemp -d --suffix=WHCFOUNDATION))
 	chmod 777 $(TMP)
 	docker run --name=whcfoundation \
@@ -48,16 +50,13 @@ devola:
 	-v /var/run/docker.sock:/run/docker.sock \
 	-v $(shell which docker):/bin/docker \
 	-t joshuacox/whcfoundation
-	sleep 5
-	chromium  http://127.0.0.1:3001
-	chromium  http://127.0.0.1:3000
 
 show:
 	chromium /tmp/_site/index.html
 
 view:
-	chromium  http://127.0.0.1:3000
-	chromium  http://127.0.0.1:3001
+	chromium  http://127.0.0.1:3000 &
+	chromium  http://127.0.0.1:3001 &
 
 serve:
 	grunt serve
