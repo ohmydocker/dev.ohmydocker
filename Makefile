@@ -25,6 +25,21 @@ preview:
 	-p 3000:3000 \
 	-p 3001:3001 \
 	-v /var/run/docker.sock:/run/docker.sock \
+	-v ~/.ssh:/home/yeoman/ \
+	-v $(shell which docker):/bin/docker \
+	-t joshuacox/whcfoundation
+
+testola:
+	docker pull joshuacox/whcfoundation
+	$(eval TMP := $(shell mktemp -d --suffix=WHCFOUNDATION))
+	chmod 777 $(TMP)
+	docker run --name=whcfoundation \
+	--cidfile="cid" \
+	-v $(TMP):/tmp \
+	-p 3000:3000 \
+	-p 3001:3001 \
+	-v /var/run/docker.sock:/run/docker.sock \
+	-v ~/.ssh:/home/yeoman/ \
 	-v $(shell which docker):/bin/docker \
 	-t joshuacox/whcfoundation
 
