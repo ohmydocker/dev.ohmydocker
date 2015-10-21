@@ -15,6 +15,8 @@ dev: rm  cprundevin builddocker rundevdocker
 
 octo: cpoctoin octopush cprundevin
 
+d: rm devola
+
 preview:
 	docker pull joshuacox/whcfoundation
 	$(eval TMP := $(shell mktemp -d --suffix=WHCFOUNDATION))
@@ -37,9 +39,9 @@ devola:
 	chmod 777 $(TMP)
 	docker run --name=whcfoundation \
 	--cidfile="cid" \
-	-v $(TMP):/tmp \
 	-p 3000:3000 \
 	-p 3001:3001 \
+	-v $(TMP):/tmp \
 	-v ~/.bash_profile:/home/yeoman/.bash_profile \
 	-v ~/.gitconfig:/home/yeoman/.gitconfig \
 	-v ~/.ssh:/home/yeoman/.ssh \
