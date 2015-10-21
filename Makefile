@@ -5,7 +5,7 @@ help:
 	@echo "-- Help Menu"
 	@echo ""  Add your jekyll site right here in the base of the gitrepo
 	@echo ""  An example site is given to be replaced
-	@echo ""   1. make render       - your site will be in /tmp/
+	@echo ""   1. make preview       - will give you a preview
 
 build: cprenderin builddocker cpoctoin beep
 
@@ -27,8 +27,11 @@ preview:
 	-v /var/run/docker.sock:/run/docker.sock \
 	-v $(shell which docker):/bin/docker \
 	-t joshuacox/whcfoundation
+	sleep 5
+	chromium  http://127.0.0.1:3001
+	chromium  http://127.0.0.1:3000
 
-testola:
+devola:
 	docker pull joshuacox/whcfoundation
 	$(eval TMP := $(shell mktemp -d --suffix=WHCFOUNDATION))
 	chmod 777 $(TMP)
@@ -37,12 +40,21 @@ testola:
 	-v $(TMP):/tmp \
 	-p 3000:3000 \
 	-p 3001:3001 \
+	-v ~/.bash_profile:/home/yeoman/.bash_profile \
+	-v ~/.ssh:/home/yeoman/.ssh \
 	-v /var/run/docker.sock:/run/docker.sock \
 	-v $(shell which docker):/bin/docker \
 	-t joshuacox/whcfoundation
+	sleep 5
+	chromium  http://127.0.0.1:3001
+	chromium  http://127.0.0.1:3000
 
 show:
 	chromium /tmp/_site/index.html
+
+view:
+	chromium  http://127.0.0.1:3000
+	chromium  http://127.0.0.1:3001
 
 serve:
 	grunt serve
@@ -57,7 +69,8 @@ rundevdocker:
 	-v $(TMP):/tmp \
 	-p 3000:3000 \
 	-p 3001:3001 \
-	-v ~/ssh:/home/yeoman/.ssh \
+	-v ~/.bash_profile:/home/yeoman/.bash_profile \
+	-v ~/.ssh:/home/yeoman/.ssh \
 	-v /var/run/docker.sock:/run/docker.sock \
 	-v $(shell which docker):/bin/docker \
 	-t joshuacox/whcfoundationrender
