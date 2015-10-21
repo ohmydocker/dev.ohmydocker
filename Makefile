@@ -41,6 +41,7 @@ devola:
 	-p 3000:3000 \
 	-p 3001:3001 \
 	-v ~/.bash_profile:/home/yeoman/.bash_profile \
+	-v ~/.gitconfig:/home/yeoman/.gitconfig \
 	-v ~/.ssh:/home/yeoman/.ssh \
 	-v /var/run/docker.sock:/run/docker.sock \
 	-v $(shell which docker):/bin/docker \
