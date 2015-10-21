@@ -1,20 +1,28 @@
-FROM octohost/jekyll-nginx
+FROM joshuacox/yeoman
 MAINTAINER Josh Cox <josh 'at' webhosting coop>
 
 ENV LANGUAGE en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
+USER root
 WORKDIR /srv/www
-RUN gem install kramdown
+ADD www/. /srv/www/
+ADD www/.* /srv/www/
+RUN rm -Rf app
+RUN git clone https://github.com/WebHostingCoopTeam/jekyll.foundation.whc.git app
+RUN cd app; git remote add ssh git@github.com:WebHostingCoopTeam/jekyll.foundation.whc.git
+RUN sudo chown -R yeoman. /srv/www 
+USER yeoman
 
-ADD www/app/* /srv/www/
-RUN jekyll build
+RUN ["/bin/bash", "-c",  "source /home/yeoman/.rvm/scripts/rvm ; bundle install"]
+RUN ["/bin/bash", "-c",  "npm owner ls bufferutil"]
+RUN ["/bin/bash", "-c",  "source /home/yeoman/.rvm/scripts/rvm ; npm install"]
+# RUN ["/bin/bash", "-c",  "source /home/yeoman/.rvm/scripts/rvm ; npm install coffeelint"]
+RUN ["/bin/bash", "-c",  "source /home/yeoman/.rvm/scripts/rvm ; bower install"]
 
-ADD ./start.sh /start.sh
-RUN chmod 755 /start.sh
+EXPOSE 3000 3001
 
-VOLUME ["/tmp"]
-# MOUNT_FROM_HOST /tmp /tmp
-
-CMD ["/bin/bash", "/start.sh"]
+ADD render.sh /srv/www/
+# RUN cd app; git pull
+CMD ["/bin/bash", "-c",  "source /home/yeoman/.rvm/scripts/rvm ; ./render.sh"]

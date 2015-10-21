@@ -98,8 +98,6 @@ rundocker:
 	@docker run --name=whcfoundation \
 	--cidfile="cid" \
 	-v /tmp:/tmp \
-	-v /var/run/docker.sock:/run/docker.sock \
-	-v $(shell which docker):/bin/docker \
 	-t joshuacox/whcfoundationrender
 
 builddocker:
