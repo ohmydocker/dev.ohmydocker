@@ -11,7 +11,7 @@ build: cprenderin builddocker cpoctoin beep
 
 render: cprenderin builddocker rundocker cprundevin rm beep
 
-dev: cprundevin builddocker rundevdocker
+dev: rm  cprundevin builddocker rundevdocker
 
 octo: cpoctoin octopush cprundevin
 
@@ -25,7 +25,6 @@ preview:
 	-p 3000:3000 \
 	-p 3001:3001 \
 	-v /var/run/docker.sock:/run/docker.sock \
-	-v ~/.ssh:/home/yeoman/ \
 	-v $(shell which docker):/bin/docker \
 	-t joshuacox/whcfoundation
 
@@ -39,7 +38,6 @@ testola:
 	-p 3000:3000 \
 	-p 3001:3001 \
 	-v /var/run/docker.sock:/run/docker.sock \
-	-v ~/.ssh:/home/yeoman/ \
 	-v $(shell which docker):/bin/docker \
 	-t joshuacox/whcfoundation
 
@@ -59,6 +57,7 @@ rundevdocker:
 	-v $(TMP):/tmp \
 	-p 3000:3000 \
 	-p 3001:3001 \
+	-v ~/ssh:/home/yeoman/.ssh \
 	-v /var/run/docker.sock:/run/docker.sock \
 	-v $(shell which docker):/bin/docker \
 	-t joshuacox/whcfoundationrender
