@@ -11,7 +11,7 @@ ADD www/. /srv/www/
 ADD www/.* /srv/www/
 RUN rm -Rf app
 RUN git clone https://github.com/WebHostingCoopTeam/jekyll.foundation.whc.git app
-RUN cd app; git remote remove origin ; git remote add origin git@github.com:WebHostingCoopTeam/jekyll.foundation.whc.git
+RUN cd app; git remote add ssh git@github.com:WebHostingCoopTeam/jekyll.foundation.whc.git
 RUN sudo chown -R yeoman. /srv/www 
 USER yeoman
 
@@ -24,6 +24,5 @@ RUN ["/bin/bash", "-c",  "source /home/yeoman/.rvm/scripts/rvm ; bower install"]
 EXPOSE 3000 3001
 
 ADD start.sh /srv/www/
-RUN cd app; git remote remove origin ; git remote add http https://github.com/WebHostingCoopTeam/jekyll.foundation.whc.git
-RUN cd app; git pull http master
+# RUN cd app; git pull
 CMD ["/bin/bash", "-c",  "source /home/yeoman/.rvm/scripts/rvm ; ./start.sh"]
