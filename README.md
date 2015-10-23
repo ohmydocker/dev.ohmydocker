@@ -19,12 +19,7 @@ but if you have write access on the WebhostingCoop Team you can include your .ss
 docker run --name=whcfoundation -p 3000:3000 -p 3001:3001 -v ~/.bash_profile:/home/yeoman/.bash_profile -v ~/.gitconfig:/home/yeoman/.gitconfig -v ~/.ssh:/home/yeoman/.ssh -t joshuacox/whcfoundation
 ```
 
-then in a separate shell (the last one will be showing output from grunt and a ctrl-C will kill the container)
-
-```
-make enter
-```
-
+then you can enter the container and
 now you can alter the website and push changes
 
 ```

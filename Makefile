@@ -9,7 +9,7 @@ help:
 
 build: cprenderin builddocker cpoctoin beep
 
-render: cprenderin builddocker rundocker cprundevin rm beep
+rend: cprenderin builddocker rundocker cprundevin rm beep
 
 dev: rm  cprundevin builddocker rundevdocker
 
@@ -41,6 +41,7 @@ devola:
 	chmod 777 $(TMP)
 	docker run --name=whcfoundation \
 	--cidfile="cid" \
+	-d \
 	-p 3000:3000 \
 	-p 3001:3001 \
 	-v $(TMP):/tmp \
@@ -128,3 +129,6 @@ clean: cleanfiles rm
 
 enter:
 	docker exec -i -t `cat cid` /bin/bash
+
+logs:
+		docker logs -f `cat cid`
