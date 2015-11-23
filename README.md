@@ -1,22 +1,22 @@
-# dev.foundation.whc
-This is a development version of foundation.whc
+# dev.ohmydocker
+This is a development version of ohmydocker
 
 to use this you can merely pull y prebuilt image from docker hub:
 
 ```
-docker pull joshuacox/whcfoundation
+docker pull ohmydocker/dev.ohmydocker
 ```
 
 then if you merely want to preview the dev site you can do this:
 
 ```
-docker run --name=whcfoundation -p 3000:3000 -p 3001:3001 -t joshuacox/whcfoundation
+docker run --name=ohmydocker -p 3000:3000 -p 3001:3001 -t ohmydocker/dev.ohmydocker
 ```
 
-but if you have write access on the WebhostingCoop Team you can include your .ssh directory (also your user must uid 1000 for this to work as a volume mount)
+but if you have write access on the OhMyDocker group you can include your .ssh directory (also your user must uid 1000 for this to work as a volume mount)
 
 ```
-docker run --name=whcfoundation -p 3000:3000 -p 3001:3001 -v ~/.bash_profile:/home/yeoman/.bash_profile -v ~/.gitconfig:/home/yeoman/.gitconfig -v ~/.ssh:/home/yeoman/.ssh -t joshuacox/whcfoundation
+docker run --name=ohmydocker -p 3000:3000 -p 3001:3001 -v ~/.bash_profile:/home/yeoman/.bash_profile -v ~/.gitconfig:/home/yeoman/.gitconfig -v ~/.ssh:/home/yeoman/.ssh -t ohmydocker/dev.ohmydocker
 ```
 
 then you can enter the container and
